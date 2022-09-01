@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>*, ::before, ::after {box-sizing: border-box} html,body{margin: 0; padding:0}</style>
+</head>
+<body>
+    <canvas id="sequence"></canvas>
+    <script src="../sequence.js"></script>
+    <script>
+        const sequence = new Sequence({
+            // Required
+            canvas: '#sequence', // Строка селектора
+            pathToFrames: 'frames/', // Путь до фреймов
+            nameFrames: 'LKS_seq001_', // Название фреймов
+            padFrames: 5, // Количество цифровых символов после имени
+            formatFrames: 'webp', // Формат фреймов
+            countFrames: 41, // Общее количество фреймов
+            widthFrames: 1920, // Натуральная ширина фреймов
+            heightFrames: 950, // Натуральная высота фреймов
+            // Optional
+            renderFirstFrame: true, // Отобразить первый кадр при загрузке (Default: false)
+            startAfterLoading: true, // Страт после загрузки (Default: false)
+            direction: 1, // Направление (Default: 1)
+            fps: 60, // Кадров в секунду (Default: Max for web browser ~ 60)
+            loop: true, // Зацикленность (Default: false)
+            reversible: true, // Required setting: loop (Default: false)
+            // prevent: true // Отменяет инициализацию по умолчанию
+        });
+    </script>
+</body>
+</html>
