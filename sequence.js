@@ -32,6 +32,8 @@ class Sequence {
         this.renderFirstFrame = settings.renderFirstFrame || false; // Показывать ли сразу первый фрейм
         this.startAfterLoading = settings.startAfterLoading || false; // Запускать рендер после загрузки всех фреймов
 
+        this.resize = settings.resize || undefined;
+
         // Engine
         this.context = this.canvas.getContext('2d');
         this.frames = []; // Все фреймы
@@ -119,7 +121,11 @@ class Sequence {
     drawFrame = (indexFrame) => {
         if (indexFrame !== undefined) {
             this.context.clearRect(0, 0, this.widthCavnas, this.heightCavnas);
-            this.context.drawImage(this.frames[indexFrame], 0, 0, this.widthFrames, this.heightFrames, 0, 0, this.widthCavnas, this.heightCavnas);
+            if (this.resize) {
+                this.context.drawImage(this.frames[indexFrame], this.resize.sX, this.resize.sY, this.resize.sWidth, this.resize.sHeight, this.resize.x, this.resize.y, this.resize.width, this.resize.height);
+            } else {
+                this.context.drawImage(this.frames[indexFrame], 0, 0, this.widthFrames, this.heightFrames, 0, 0, this.widthCavnas, this.heightCavnas);
+            }
             this.dispatch('update');
         }
     }
